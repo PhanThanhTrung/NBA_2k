@@ -34,7 +34,7 @@ def load_label(image_name, label_dict):
             image_class_i = np.zeros(shape=(HEIGHT, WIDTH))
         label.append(image_class_i)
     label = np.array(label)
-    label = label.sum(axis=0)
+    label = label.max(axis=0)
     return label
 
 
@@ -52,5 +52,5 @@ def load_data():
         y.append(label)
     return X, y
 
-
-X, y = load_data()
+if __name__=='__main__':
+    X, y = load_data()
