@@ -31,7 +31,7 @@ aug = ImageDataGenerator(rotation_range=20,
 
 def load_mask(image_name):
     mask=cv2.imread("./dataset/Masks/"+image_name+".png")
-    mask=mask[0]
+    mask=mask[:,:,0]
     return mask
 
 def load_data():
