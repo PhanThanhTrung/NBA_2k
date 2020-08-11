@@ -23,4 +23,4 @@ for image_path in image_list:
     image_name = image_path.split("/")[-1][:-4]
     print("[INFO] Loading on image path: ", image_name)
     label = load_label(image_name, SAMPLE_LABEL_DICT)
-    cv2.imwrite("./dataset/Masks/"+image_name+".jpg",label)
+    cv2.imwrite("./dataset/Masks/"+image_name+".png",label)

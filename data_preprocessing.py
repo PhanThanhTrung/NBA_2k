@@ -29,7 +29,11 @@ aug = ImageDataGenerator(rotation_range=20,
                          horizontal_flip=True,
                          fill_mode="nearest")
 
-def load_mask()
+def load_mask(image_name):
+    mask=cv2.imread("./dataset/Masks/"+image_name+".png")
+    mask=mask[0]
+    return mask
+
 def load_data():
     image_list = glob.glob(IMAGE_PATH + "*")
     X = []
@@ -59,7 +63,7 @@ def batch_generator(batch_size=4):
                 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
                 X_train.append(img)
                 image_name = image_path.split("/")[-1][:-4]
-                label = load_label(image_name, SAMPLE_LABEL_DICT)
+                label = load_mask(image_name)
                 y_train.append(label)
 
             X_train = np.array(X_train)
@@ -74,4 +78,5 @@ def batch_generator(batch_size=4):
 
 
 if __name__ == '__main__':
-    X, y = load_data()
+    load_mask("image1")
+    #X, y = load_data()
