@@ -1,9 +1,20 @@
 import json
 from utils import *
+import glob
 
 JSON_PATH = "./dataset.json"
 IMAGE_PATH = "./dataset/Images/"
 LABEL_PATH = "./dataset/Labels/"
+SAMPLE_LABEL_DICT = {
+    "foul_space": 1,
+    "1point": 2,
+    "2point": 3,
+    "3point": 4,
+    "player": 5,
+    "ball": 6,
+    "basket": 7,
+    "background": 0
+}
 if __name__ == "__main__":
     with open(JSON_PATH) as json_file:
         data = json.load(json_file)
