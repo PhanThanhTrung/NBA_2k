@@ -2,8 +2,11 @@ import os
 import requests
 import imageio
 import cv2
+import random
 
-
+def shuffle(a):
+    return random.shuffle(a)
+    
 def get_image(data_dict, file_name):
     image_url = data_dict["Labeled Data"]
     res = requests.get(image_url, timeout=20)
