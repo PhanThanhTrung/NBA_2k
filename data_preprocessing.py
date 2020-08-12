@@ -64,11 +64,11 @@ def batch_generator(batch_size=4):
             for image_path in batch_sample:
                 img = cv2.imread(image_path)
                 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-                image = imutils.resize(image, width=640)
+                #image = imutils.resize(img, width=640)
                 X_train.append(img)
                 image_name = image_path.split("/")[-1][:-4]
                 label = load_mask(image_name)
-                label = imutils.resize(label, width=640)
+                #label = imutils.resize(label, width=640)
                 y_train.append(label)
 
             X_train = np.array(X_train)

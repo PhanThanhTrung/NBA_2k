@@ -190,6 +190,7 @@ def _unet(n_classes,
 
     o = Conv2D(n_classes, (3, 3), padding='same',
                data_format=IMAGE_ORDERING)(o)
+
     o = (Activation('softmax'))(o)
     model = Model(img_input, o)
     return model
@@ -197,7 +198,8 @@ def _unet(n_classes,
 
 def mobilenet_unet(n_classes,
                    input_height=224,
-                   input_width=224):
+                   input_width=224,
+                   encoder_level=3):
 
     model = _unet(n_classes,
                   get_mobilenet_encoder,
