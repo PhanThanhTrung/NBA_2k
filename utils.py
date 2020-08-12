@@ -40,7 +40,7 @@ def get_label(data_dict, path, label):
         for obj in data_dict["Label"]["objects"]:
             if obj["value"] == label:
                 img = requests.get(obj["instanceURI"], timeout=20)
-                with open(path + str(index) + ".jpg", "wb") as f:
+                with open(path + str(index) + ".png", "wb") as f:
                     f.write(img.content)
                 index += 1
     except:

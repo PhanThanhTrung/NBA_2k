@@ -22,7 +22,7 @@ if __name__ == "__main__":
     index = 1
     for data_dict in data:
         print("[INFO] Working on image", index)
-        image_file_path = IMAGE_PATH + "image" + str(index) + ".jpg"
+        image_file_path = IMAGE_PATH + "image" + str(index) + ".png"
         label_path = LABEL_PATH + "image" + str(index) + "/"
         get_image(data_dict, image_file_path)
         get_label(data_dict, label_path, label="1point")
