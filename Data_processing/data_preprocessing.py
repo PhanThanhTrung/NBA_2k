@@ -21,13 +21,10 @@ SAMPLE_LABEL_DICT = {
     "background": 0
 }
 
-aug = ImageDataGenerator(rotation_range=20,
-                         zoom_range=0.15,
-                         width_shift_range=0.2,
-                         height_shift_range=0.2,
-                         shear_range=0.15,
-                         horizontal_flip=True,
-                         fill_mode="nearest")
+aug = ImageDataGenerator(rescale=1. / 255,
+                         shear_range=0.2,
+                         zoom_range=0.2,
+                         horizontal_flip=True)
 
 
 def load_data():
@@ -45,7 +42,7 @@ def load_data():
     return X, y
 
 
-def batch_generator(batch_size=4, output_height=720):
+def batch_generator(batch_size=4, augment=True, output_height=720):
     image_list = glob.glob(IMAGE_PATH + "*")
     n = len(image_list)
     while True:
@@ -68,7 +65,9 @@ def batch_generator(batch_size=4, output_height=720):
             X_train = np.array(X_train)
             y_train = np.array(y_train)
             y_train = to_categorical(y_train, len(SAMPLE_LABEL_DICT))
-
+            if augment:
+                X = aug.flow(X_train, y_train, batch_size=batch_size, seed=1)
+                X_train, y_train = next(X)
             yield X_train, y_train
 
 

@@ -1,19 +1,19 @@
 import keras
 import cv2
 import numpy as np
-from model import mobilenet_unet
-from utils import process_mask
-from data_preprocessing import load_mask
-from keras.utils.generic_utils import CustomObjectScope
+from models.unet import *
+from Data_processing.utils import process_mask,load_mask
+MODEL_PATH="./Modemodel_weight.h5"
+IMAGE_PATH="./dataset/Images/"
 COLOR = [(0, 0, 255), (0, 255, 0), (255, 0, 0), (255, 150, 0), (255, 255, 255),
          (150, 150, 150), (0, 255, 100), (0, 0, 0)]
 image_name = "image9.png"
 # with CustomObjectScope({'relu6': model.relu6}):
 #     model = keras.models.load_model("./sample.h5")
-model = mobilenet_unet(8, 720, 1280, 3)
-model.load_weights("./model_weight.h5")
+model = mobilenet_unet(8, 720, 1280)
+model.load_weights(MODEL_PATH)
 print("loaded model")
-image = cv2.imread("./dataset/Images/" + image_name)
+image = cv2.imread(IMAGE_PATH + image_name)
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 image = np.array([image])
 output = model.predict(image)[0]

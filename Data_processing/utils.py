@@ -6,6 +6,7 @@ import random
 import numpy as np
 IMAGE_PATH = '/Users/hit.flouxetine/Desktop/NBA_2k/dataset/Images/'
 LABEL_PATH = '/Users/hit.flouxetine/Desktop/NBA_2k/dataset/Labels/'
+MASK_PATH='/Users/hit.flouxetine/Desktop/NBA_2k/dataset/Masks/'
 WIDTH = 1280
 HEIGHT = 720
 SAMPLE_LABEL_DICT = {
@@ -74,7 +75,7 @@ def load_label(image_name, label_dict):
     return label
 
 def load_mask(image_name):
-    mask = cv2.imread("./dataset/Masks/" + image_name + ".png")
+    mask = cv2.imread(MASK_PATH + image_name + ".png")
     mask = mask[:, :, 0]
     return mask
 
