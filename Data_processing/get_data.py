@@ -2,9 +2,9 @@ import json
 from utils import *
 import glob
 
-JSON_PATH = "./dataset.json"
-IMAGE_PATH = "./dataset/Images/"
-LABEL_PATH = "./dataset/Labels/"
+JSON_PATH = "/Users/hit.flouxetine/Desktop/NBA_2k/dataset/dataset.json"
+IMAGE_PATH = "/Users/hit.flouxetine/Desktop/NBA_2k/dataset/Images/"
+LABEL_PATH = "/Users/hit.flouxetine/Desktop/NBA_2k/dataset/Labels/"
 SAMPLE_LABEL_DICT = {
     "foul_space": 1,
     "1point": 2,

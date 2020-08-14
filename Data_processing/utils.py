@@ -4,8 +4,8 @@ import glob
 import cv2
 import random
 import numpy as np
-IMAGE_PATH = './dataset/Images/'
-LABEL_PATH = './dataset/Labels/'
+IMAGE_PATH = '/Users/hit.flouxetine/Desktop/NBA_2k/dataset/Images/'
+LABEL_PATH = '/Users/hit.flouxetine/Desktop/NBA_2k/dataset/Labels/'
 WIDTH = 1280
 HEIGHT = 720
 SAMPLE_LABEL_DICT = {
@@ -72,3 +72,23 @@ def load_label(image_name, label_dict):
     label = np.array(label)
     label = label.max(axis=0)
     return label
+
+def load_mask(image_name):
+    mask = cv2.imread("./dataset/Masks/" + image_name + ".png")
+    mask = mask[:, :, 0]
+    return mask
+
+def process_mask(output, COLOR):
+    mask = np.zeros(shape=(output.shape[0], output.shape[1], 3))
+
+    mask[output == 0] = COLOR[0]
+    mask[output == 1] = COLOR[1]
+    mask[output == 2] = COLOR[2]
+    mask[output == 3] = COLOR[3]
+    mask[output == 4] = COLOR[4]
+    mask[output == 5] = COLOR[5]
+    mask[output == 6] = COLOR[6]
+    mask[output == 7] = COLOR[7]
+    mask = np.reshape(mask, (720, 1280, 3))
+
+    return mask

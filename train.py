@@ -1,9 +1,8 @@
-import numpy as np
 import keras
-from model import mobilenet_unet
-from data_preprocessing import *
+from models.unet import mobilenet_unet
+from Data_processing.data_preprocessing import *
 
-model = mobilenet_unet(8, 720, 1280, 3)
+model = mobilenet_unet(8, 720, 1280)
 model.summary()
 adam = keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
 model.compile(loss="categorical_crossentropy",

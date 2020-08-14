@@ -1,14 +1,13 @@
-import os
-import glob
 import cv2
+import glob
+import imutils
 import numpy as np
 from keras.utils import to_categorical
 from keras.preprocessing.image import ImageDataGenerator
-from utils import shuffle, load_label
-import imutils
+from Data_processing.utils import shuffle, load_mask, load_label
 
-IMAGE_PATH = './dataset/Images/'
-LABEL_PATH = './dataset/Labels/'
+IMAGE_PATH = '/Users/hit.flouxetine/Desktop/NBA_2k/dataset/Images/'
+LABEL_PATH = '/Users/hit.flouxetine/Desktop/NBA_2k/dataset/Labels/'
 WIDTH = 1280
 HEIGHT = 720
 SAMPLE_LABEL_DICT = {
@@ -31,12 +30,6 @@ aug = ImageDataGenerator(rotation_range=20,
                          fill_mode="nearest")
 
 
-def load_mask(image_name):
-    mask = cv2.imread("./dataset/Masks/" + image_name + ".png")
-    mask = mask[:, :, 0]
-    return mask
-
-
 def load_data():
     image_list = glob.glob(IMAGE_PATH + "*")
     X = []
@@ -52,7 +45,7 @@ def load_data():
     return X, y
 
 
-def batch_generator(batch_size=4):
+def batch_generator(batch_size=4, output_height=720):
     image_list = glob.glob(IMAGE_PATH + "*")
     n = len(image_list)
     while True:
@@ -68,7 +61,8 @@ def batch_generator(batch_size=4):
                 X_train.append(img)
                 image_name = image_path.split("/")[-1][:-4]
                 label = load_mask(image_name)
-                #label = imutils.resize(label, width=640)
+                if label.shape[0] != output_height:
+                    label = imutils.resize(label, height=output_height)
                 y_train.append(label)
 
             X_train = np.array(X_train)

@@ -1,10 +1,8 @@
 import cv2
 import glob
-import numpy as np
 from utils import load_label
-JSON_PATH = "./dataset.json"
-IMAGE_PATH = "./dataset/Images/"
-LABEL_PATH = "./dataset/Labels/"
+IMAGE_PATH = "/Users/hit.flouxetine/Desktop/NBA_2k/dataset/Images/"
+LABEL_PATH = "/Users/hit.flouxetine/Desktop/NBA_2k/dataset/Labels/"
 SAMPLE_LABEL_DICT = {
     "foul_space": 1,
     "1point": 2,
@@ -23,4 +21,4 @@ for image_path in image_list:
     image_name = image_path.split("/")[-1][:-4]
     print("[INFO] Loading on image path: ", image_name)
     label = load_label(image_name, SAMPLE_LABEL_DICT)
-    cv2.imwrite("./dataset/Masks/"+image_name+".png",label)
+    cv2.imwrite("/Users/hit.flouxetine/Desktop/NBA_2k/dataset/Masks/" + image_name + ".png", label)
