@@ -79,7 +79,7 @@ def load_mask(image_name):
     mask = mask[:, :, 0]
     return mask
 
-def process_mask(output, COLOR):
+def process_mask(output, COLOR, shape=(720,1280,3)):
     mask = np.zeros(shape=(output.shape[0], output.shape[1], 3))
 
     mask[output == 0] = COLOR[0]
@@ -90,6 +90,6 @@ def process_mask(output, COLOR):
     mask[output == 5] = COLOR[5]
     mask[output == 6] = COLOR[6]
     mask[output == 7] = COLOR[7]
-    mask = np.reshape(mask, (720, 1280, 3))
+    mask = np.reshape(mask, shape)
 
     return mask
