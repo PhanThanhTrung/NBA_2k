@@ -2,14 +2,12 @@ import keras
 import cv2
 import numpy as np
 from models.unet import *
-from Data_processing.utils import process_mask,load_mask
-MODEL_PATH="./Modemodel_weight.h5"
-IMAGE_PATH="./dataset/Images/"
+from Data_processing.utils import process_mask, load_mask
+MODEL_PATH = "/Users/hit.flouxetine/Desktop/NBA_2k/Model_weight/model_weight.h5"
+IMAGE_PATH = "/Users/hit.flouxetine/Desktop/NBA_2k/dataset/Images/"
 COLOR = [(0, 0, 255), (0, 255, 0), (255, 0, 0), (255, 150, 0), (255, 255, 255),
          (150, 150, 150), (0, 255, 100), (0, 0, 0)]
-image_name = "image9.png"
-# with CustomObjectScope({'relu6': model.relu6}):
-#     model = keras.models.load_model("./sample.h5")
+image_name = "image1.png"
 model = mobilenet_unet(8, 720, 1280)
 model.load_weights(MODEL_PATH)
 print("loaded model")
